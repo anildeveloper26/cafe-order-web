@@ -2,11 +2,13 @@
 
 React frontend for a MERN cafe ordering system. Customers scan the QR code on their table, browse the menu, add items to a cart and order with just a name and phone number. There's no login. Staff use an admin panel to manage the menu, move orders through the kitchen and see sales stats.
 
+> Try it: [customer menu for table 3](https://cafe-order-web.vercel.app/menu?table=3). The backend runs on Render's free tier, so the first load after it has been idle can take up to a minute.
+>
 > **Backend / REST API:** [anildeveloper26/cafe-order-api](https://github.com/anildeveloper26/cafe-order-api)
 
 | | Link |
 |---|---|
-| **Live app (Vercel)** | _coming soon_ |
+| **Live app (Vercel)** | https://cafe-order-web.vercel.app |
 | **Live API docs** | https://cafe-order-api-xxed.onrender.com/api/docs |
 
 ## Features
