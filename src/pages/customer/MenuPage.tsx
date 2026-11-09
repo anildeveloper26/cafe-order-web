@@ -34,7 +34,7 @@ export default function MenuPage() {
       <MenuHero tableNumber={tableNumber} />
 
       <main className="mx-auto max-w-7xl px-4">
-        <div className="sticky top-16 z-20 -mx-4 bg-stone-50/95 px-4 py-4 backdrop-blur">
+        <div className="sticky top-16 z-20 -mx-4 bg-stone-50/95 px-4 py-3 backdrop-blur sm:py-4">
           <MenuFilters
             search={search}
             onSearch={setSearch}

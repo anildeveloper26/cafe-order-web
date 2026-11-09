@@ -86,9 +86,12 @@ export function CheckoutForm({ lines, items, total, tableNumber, submitting, ser
         }
       />
 
-      <Button type="submit" size="lg" fullWidth disabled={items.length === 0} loading={submitting} loadingText="Placing order…">
-        Place order · {formatPrice(total)}
-      </Button>
+      {/* Stays visible at the bottom of the sheet while the form scrolls on small screens. */}
+      <div className="sticky -bottom-5 -mx-5 border-t border-stone-100 bg-white px-5 py-4">
+        <Button type="submit" size="lg" fullWidth disabled={items.length === 0} loading={submitting} loadingText="Placing order…">
+          Place order · {formatPrice(total)}
+        </Button>
+      </div>
     </form>
   );
 }

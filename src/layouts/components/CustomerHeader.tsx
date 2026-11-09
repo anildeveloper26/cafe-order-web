@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { Receipt } from 'lucide-react';
 import { BrandLogo } from '@/components/common/BrandLogo';
 import { buttonClasses } from '@/components/ui';
 import { CartButton } from '@/features/cart';
@@ -18,6 +19,9 @@ export function CustomerHeader({ tableNumber }: { tableNumber: number | null }) 
         <nav className="flex items-center gap-1">
           <Link to={PATHS.myOrders} className={buttonClasses('ghost', 'md', 'hidden sm:inline-flex')}>
             My orders
+          </Link>
+          <Link to={PATHS.myOrders} className={buttonClasses('ghost', 'icon', 'h-10 w-10 sm:hidden')} aria-label="My orders">
+            <Receipt size={20} />
           </Link>
           <CartButton />
         </nav>
