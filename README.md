@@ -6,8 +6,8 @@ React frontend for a MERN cafe ordering system. Customers scan the QR code on th
 
 | | Link |
 |---|---|
-| **Live app (Vercel)** | `https://<your-app>.vercel.app` |
-| **Live API docs** | `https://<your-api>.onrender.com/api/docs` |
+| **Live app (Vercel)** | _coming soon_ |
+| **Live API docs** | https://cafe-order-api-xxed.onrender.com/api/docs |
 
 ## Features
 
@@ -86,8 +86,8 @@ Open `http://localhost:5173/menu?table=3` to try the QR flow, or `http://localho
 
 | Variable | Description |
 |---|---|
-| `VITE_API_URL` | Backend API base URL, e.g. `https://your-api.onrender.com/api` |
-| `VITE_SOCKET_URL` | Socket.io origin, e.g. `https://your-api.onrender.com` |
+| `VITE_API_URL` | Backend API base URL, e.g. `https://cafe-order-api-xxed.onrender.com/api` |
+| `VITE_SOCKET_URL` | Socket.io origin, e.g. `https://cafe-order-api-xxed.onrender.com` |
 | `VITE_PUBLIC_URL` | Public URL of this app, used inside the table QR codes (defaults to the current origin) |
 
 ## Scripts
