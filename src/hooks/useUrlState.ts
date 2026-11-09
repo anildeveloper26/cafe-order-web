@@ -25,8 +25,10 @@ export function useUrlState<T extends Schema>(defaults: T, validators: Validator
   const setState = useCallback(
     (patch: Partial<T>, options: { replace?: boolean } = { replace: true }) => {
       setParams(
-        (prev) => {
-          const next = new URLSearchParams(prev);
+        () => {
+          // Build from the live URL, not the hook's `prev`: React Router runs navigations as transitions,
+          // so two quick updates (e.g. category then sort) would otherwise drop the first one.
+          const next = new URLSearchParams(window.location.search);
           for (const [key, value] of Object.entries(patch)) {
             if (value === undefined || value === '' || value === defaults[key]) next.delete(key);
             else next.set(key, value);
@@ -42,10 +44,11 @@ export function useUrlState<T extends Schema>(defaults: T, validators: Validator
   const reset = useCallback(
     (keep: (keyof T)[] = []) =>
       setParams(
-        (prev) => {
+        () => {
+          const current = new URLSearchParams(window.location.search);
           const next = new URLSearchParams();
           for (const k of keep) {
-            const v = prev.get(k as string);
+            const v = current.get(k as string);
             if (v !== null) next.set(k as string, v);
           }
           return next;
