@@ -62,6 +62,12 @@ export default function MenuPage() {
 
   const query = useMemo(() => ({ search: debouncedSearch, category, sort }), [debouncedSearch, category, sort]);
   const { items, loading, slow, error, reload } = useMenu(query);
+  const syncWithMenu = useCartStore((s) => s.syncWithMenu);
+
+  // The unfiltered list is the full set of orderable items: drop stale cart lines and refresh prices.
+  useEffect(() => {
+    if (!loading && !error && !debouncedSearch && !category) syncWithMenu(items);
+  }, [items, loading, error, debouncedSearch, category, syncWithMenu]);
 
   const hasFilters = Boolean(debouncedSearch || category);
 

@@ -19,6 +19,8 @@ interface CartState {
   setQuantity: (id: string, qty: number) => void;
   remove: (id: string) => void;
   clear: () => void;
+  /** Drops lines whose item is gone/unavailable and refreshes name/price from the live menu. */
+  syncWithMenu: (items: MenuItem[]) => void;
   setTable: (n: number | null) => void;
   open: () => void;
   close: () => void;
@@ -53,6 +55,17 @@ export const useCartStore = create<CartState>()(
         })),
       remove: (id) => set((s) => ({ lines: s.lines.filter((l) => l.item._id !== id) })),
       clear: () => set({ lines: [] }),
+      syncWithMenu: (items) =>
+        set((s) => {
+          const byId = new Map(items.map((i) => [i._id, i]));
+          const lines = s.lines.flatMap((l) => {
+            const fresh = byId.get(l.item._id);
+            if (!fresh) return [];
+            const { _id, name, price, imageUrl, category, isVeg } = fresh;
+            return [{ ...l, item: { _id, name, price, imageUrl, category, isVeg } }];
+          });
+          return { lines };
+        }),
       setTable: (n) => set({ tableNumber: n }),
       open: () => set({ isOpen: true }),
       close: () => set({ isOpen: false }),
