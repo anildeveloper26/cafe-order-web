@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from 'react';
 import { Button, Input } from '@/components/ui';
 import { PHONE_LENGTH, PHONE_REGEX } from '@/constants/validation';
-import { digitsOnly } from '@/lib/format';
+import { normalizeMobile } from '@/lib/format';
 
 export function PhoneLookupForm({ initialPhone, onSubmit }: { initialPhone: string; onSubmit: (phone: string) => void }) {
   const [phone, setPhone] = useState(initialPhone);
@@ -20,7 +20,7 @@ export function PhoneLookupForm({ initialPhone, onSubmit }: { initialPhone: stri
         <label htmlFor="lookup-phone" className="sr-only">
           Mobile number
         </label>
-        <Input id="lookup-phone" inputMode="numeric" placeholder="98765 43210" value={phone} onChange={(e) => setPhone(digitsOnly(e.target.value, PHONE_LENGTH))} invalid={Boolean(error)} />
+        <Input id="lookup-phone" inputMode="numeric" placeholder="98765 43210" value={phone} onChange={(e) => setPhone(normalizeMobile(e.target.value, PHONE_LENGTH))} invalid={Boolean(error)} />
         {error && <p className="mt-1 text-xs text-red-600">{error}</p>}
       </div>
       <Button type="submit" className="h-[42px]">

@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from 'react';
 import { Button, FormField, Input, Textarea } from '@/components/ui';
 import { NAME_MIN, NOTES_MAX, PHONE_LENGTH, PHONE_REGEX } from '@/constants/validation';
-import { digitsOnly, formatPrice } from '@/lib/format';
+import { digitsOnly, formatPrice, normalizeMobile } from '@/lib/format';
 import { getFieldErrors } from '@/lib/errors';
 import type { PlaceOrderInput } from '@/types/order';
 import { OrderSummary } from './OrderSummary';
@@ -59,7 +59,7 @@ export function CheckoutForm({ lines, items, total, tableNumber, submitting, ser
             id="phone"
             className="rounded-l-none"
             value={phone}
-            onChange={(e) => setPhone(digitsOnly(e.target.value, PHONE_LENGTH))}
+            onChange={(e) => setPhone(normalizeMobile(e.target.value, PHONE_LENGTH))}
             inputMode="numeric"
             autoComplete="tel-national"
             placeholder="98765 43210"
